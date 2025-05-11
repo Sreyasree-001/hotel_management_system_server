@@ -2,7 +2,7 @@ package com.code.mvc.models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "room")
@@ -11,40 +11,34 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long roomId;
-    @Column(name = "roomNo", nullable = false,length = 3, unique = true)
-    private String roomNumber;
-    @Column(name = "roomType", nullable = false,unique = false,length = 10)
+
+    @Column(name = "roomNo", nullable = false, length = 10, unique = true)
+    private long roomNo;
+
+    @Column(name = "roomType", nullable = false, length = 10)
     private String roomType;
-    @Column(name= "price", nullable = false, unique = false)
-    private Double price;
-    @Column(name = "isAvailable", nullable = false,unique = false)
-    private Boolean isAvailable;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private List<ServiceRequest> serviceRequests;
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
-    public List<ServiceRequest> getServiceRequests() {
-        return serviceRequests;
-    }
+    @Column(name = "isAvailable", nullable = false)
+    private boolean isAvailable;
 
-    public void setServiceRequests(List<ServiceRequest> serviceRequests) {
-        this.serviceRequests = serviceRequests;
-    }
-
-    public long getId() {
+    // Getters and Setters
+    public long getRoomId() {
         return roomId;
     }
 
-    public void setId(long id) {
-        this.roomId = id;
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
     }
 
-    public String getRoomNumber() {
-        return roomNumber;
+    public long getRoomNumber() {
+        return roomNo;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomNumber(long roomNo) {
+        this.roomNo = roomNo;
     }
 
     public String getRoomType() {
@@ -55,19 +49,32 @@ public class Room {
         this.roomType = roomType;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public Boolean getAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(Boolean available) {
-        isAvailable = available;
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+    public Room(){
+        this.roomNo=0;
+        this.roomType=null;
+        this.price=null;
+        this.isAvailable=false;
+    }
+    public Room(long roomNo,String roomType,BigDecimal price, boolean isAvailable){
+        super();
+        this.roomNo=roomNo;
+        this.roomType=roomType;
+        this.price=price;
+        this.isAvailable=isAvailable;
     }
 }

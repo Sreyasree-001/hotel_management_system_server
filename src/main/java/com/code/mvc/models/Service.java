@@ -10,8 +10,8 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long serviceid;
-    @Column(name = "sername",nullable = false,length = 40)
+    private long serviceId;
+    @Column(name = "serviceName",nullable = false,length = 40)
     private String serviceName;
     @Column(name = "cost",nullable = false)
     private Double cost;
@@ -27,12 +27,12 @@ public class Service {
         this.serviceRequests = serviceRequests;
     }
 
-    public long getServiceid() {
-        return serviceid;
+    public long getServiceId() {
+        return serviceId;
     }
 
-    public void setServiceid(long serviceid) {
-        this.serviceid = serviceid;
+    public void setServiceId(long serviceId) {
+        this.serviceId = serviceId;
     }
 
     public String getServiceName() {

@@ -19,9 +19,19 @@ public class CustomerService implements CustomerServiceInterface{
     }
 
     @Override
-    public Customer updateCustomer(Customer customer){
-        return customerRepo.save(customer);
+    public Customer updateCustomer(long id, Customer customer) {
+        Optional<Customer> existingCustomer = customerRepo.findById(id);
+        if (existingCustomer.isPresent()) {
+            Customer updatedCustomer = existingCustomer.get();
+            updatedCustomer.setCustomerName(customer.getCustomerName());
+            updatedCustomer.setCustomerEmail(customer.getCustomerEmail());
+            updatedCustomer.setPhoneNo(customer.getPhoneNo());
+            updatedCustomer.setAddress(customer.getAddress());
+            return customerRepo.save(updatedCustomer);
+        }
+        return null;
     }
+
 
     @Override
     public String deleteCustomer(long id){

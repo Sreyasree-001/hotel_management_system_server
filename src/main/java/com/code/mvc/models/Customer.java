@@ -11,58 +11,52 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long custId;
+    private long customerId;
 
     @Column(name = "name", length = 100, nullable = false, unique = false)
-    private String custname;
+    private String customerName;
     @Column(name = "email", length=50, nullable = false, unique = true)
-    private String custemail;
-    @Column(name = "phoneno", length = 20,nullable = false, unique = true)
-    private String phoneno;
+    private String customerEmail;
+    @Column(name = "phoneNo", length = 20,nullable = false, unique = true)
+    private String phoneNo;
     @Column(name = "address", length = 150, nullable = false, unique = false)
     private String address;
 
     @OneToMany(mappedBy = "customer")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Booking> bookings;
 
-    public List<Booking> getBookings() {
-        return bookings;
+
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 
-    public long getCustId() {
-        return custId;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustId(long custid) {
-        this.custId = custid;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getCustname() {
-        return custname;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setCustname(String custname) {
-        this.custname = custname;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
-    public String getCustemail() {
-        return custemail;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setCustemail(String custemail) {
-        this.custemail = custemail;
-    }
-
-    public String getPhoneno() {
-        return phoneno;
-    }
-
-    public void setPhoneno(String phoneno) {
-        this.phoneno = phoneno;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getAddress() {
@@ -73,17 +67,27 @@ public class Customer {
         this.address = address;
     }
 
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+
+
     public Customer(){
-        this.custname=null;
-        this.custemail=null;
-        this.phoneno=null;
+        this.customerName=null;
+        this.customerEmail=null;
+        this.phoneNo=null;
         this.address=null;
     }
     public Customer(String custname,String custemail, String phoneno, String address){
         super();
-        this.custname=custname;
-        this.custemail=custemail;
-        this.phoneno=phoneno;
+        this.customerName=custname;
+        this.customerEmail=custemail;
+        this.phoneNo=phoneno;
         this.address=address;
     }
 }

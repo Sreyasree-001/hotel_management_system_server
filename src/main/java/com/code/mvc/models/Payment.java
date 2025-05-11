@@ -16,17 +16,17 @@ public class Payment {
     @Column(name = "payment_date",nullable = false)
     private Date paymentDate;
 
-    @OneToOne
-    @JoinColumn(name = "bookingid", nullable = false)
-    private Booking booking;
+//    @OneToOne
+//    @JoinColumn(name = "bookingId", nullable = false)
+//    private Booking booking;
 
-    public Booking getBooking() {
-        return booking;
-    }
-
-    public void setBooking(Booking booking) {
-        this.booking = booking;
-    }
+//    public Booking getBooking() {
+//        return booking;
+//    }
+//
+//    public void setBooking(Booking booking) {
+//        this.booking = booking;
+//    }
 
     public long getPaymentId() {
         return paymentId;

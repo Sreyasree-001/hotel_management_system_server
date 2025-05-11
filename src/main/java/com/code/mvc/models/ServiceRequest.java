@@ -15,12 +15,12 @@ public class ServiceRequest {
     private Date requestDate;
     @Column(name = "reqStatus",nullable = false)
     private String reqStatus;
-    @ManyToOne
-    @JoinColumn(name = "roomId", nullable = false)
-    private Room room;
+//    @ManyToOne
+//    @JoinColumn(name = "roomId", nullable = false)
+//    private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "serviceid", nullable = false)
+    @JoinColumn(name = "serviceId", nullable = false)
     private Service service;
 
     public Service getService() {
@@ -55,11 +55,11 @@ public class ServiceRequest {
         this.reqStatus = reqStatus;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+//    public Room getRoom() {
+//        return room;
+//    }
+//
+//    public void setRoom(Room room) {
+//        this.room = room;
+//    }
 }

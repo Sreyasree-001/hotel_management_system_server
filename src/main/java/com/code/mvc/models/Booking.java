@@ -1,8 +1,6 @@
 package com.code.mvc.models;
 
-
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 @Entity
@@ -10,52 +8,44 @@ import java.util.Date;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private long bookingid;
-    @Column(name = "checkin",nullable = false)
-    private Date checkin;
+    @Column(name = "id")
+    private long bookingId;
+
+    @Column(name = "checkIn", nullable = false)
+    private Date checkIn;
+
     @Column(name = "checkout")
     private Date checkout;
-    @Column(name = "status",length = 20)
+
+    @Column(name = "status", length = 20)
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "custId", nullable = false)
+    @JoinColumn(name = "customerId", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonBackReference
     private Customer customer;
 
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Payment payment;
+    @ManyToOne
+    @JoinColumn(name = "roomId", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonBackReference
+    private Room room;
 
-    public Payment getPayment() {
-        return payment;
+
+    // Getters and Setters
+    public long getBookingId() {
+        return bookingId;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Date getCheckIn() {
+        return checkIn;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public long getBookingid() {
-        return bookingid;
-    }
-
-    public void setBookingid(long bookingid) {
-        this.bookingid = bookingid;
-    }
-
-    public Date getCheckin() {
-        return checkin;
-    }
-
-    public void setCheckin(Date checkin) {
-        this.checkin = checkin;
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
     }
 
     public Date getCheckout() {
@@ -72,5 +62,35 @@ public class Booking {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Booking(){
+        this.bookingId=0;
+        this.checkIn=null;
+        this.checkout=null;
+        this.status=null;
+    }
+    public Booking(long bookingId,Date checkIn, Date checkout, String status){
+        super();
+        this.bookingId=bookingId;
+        this.checkIn=checkIn;
+        this.checkout=checkout;
+        this.status=status;
     }
 }
